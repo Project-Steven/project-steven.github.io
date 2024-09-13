@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formbar.TS</title>
+    <meta content="Formbar.TS" property="og:title" />
+    <meta content="This one's for all the Special Little Snowflakes..." property="og:description" />
+    <meta content="#3453EC" data-react-helmet="true" name="theme-color" />
+    <style>
+        :root {
+        }
+
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
+        #backgroundImg {
+            z-index: 0;
+            width: 100vw;
+            height: 110vh;
+            position: absolute;
+        }
+
+        #logoBox {
+            background-color: black;
+            width: 100vw;
+            height: 550px;
+            position: relative;
+            top: 0px;
+            left: 0px;
+            display: flex;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        #logo {
+            position: relative;
+        }
+    </style>
+</head>
+
+<body>
+    <img id="backgroundImg" src="img/formbarts5.jpg" draggable="false">
+    <div id="logoBox" draggable="false">
+        <img id="logo" src="img/logo.png">
+    </div>
+
+    <script>
+
+        let logo = document.getElementById('logo');
+        let logoStyle = getComputedStyle(logo);
+
+        let logoW = +logoStyle.width.split('px')[0];
+        let logoH = +logoStyle.height.split('px')[0];
+
+        let logoX = 0;
+        let logoY = 0;
+        let logoRot = 0;
+        let scaleX = 1;
+        let scaleY = 1;
+
+        let tick = 0;
+
+        function update(){
+            tick++;
+            //logo.style.transform = `translate(${translateX}px, ${translateY}px);`;
+            //logo.style.setProperty('top', `${logoY}px`);
+            logo.style.width = 80 + (Math.round(Math.sin(tick / 10)) / 5) + '%';
+            logo.style.height = logoH + Math.round(Math.sin(tick / 10)) + 'px';
+            console.log('update');
+            requestAnimationFrame(update);
+        }
+
+        update();
+    </script>
+</body>
+
+</html>
